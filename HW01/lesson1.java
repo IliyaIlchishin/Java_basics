@@ -42,7 +42,7 @@ public class lesson1 {
         // Почему-то при печати списка выдает I@764c12b6
         for ( int i = 0; i < repetition.length; i ++ )
         {
-            System.out.printf("elemnt %d appears %d times \n",UNumbersList[i],repetition[i]);
+            System.out.printf("элемент %d появляется %d раз \n",UNumbersList[i],repetition[i]);
         }
     }
     
