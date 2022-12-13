@@ -1,5 +1,7 @@
 package HW01;
 import java.util.*;
+import HW01.Library ;
+
 
 
 public class lesson1 {
@@ -8,6 +10,7 @@ public class lesson1 {
         
         int [] NumList = new int [] {1, 9, 7, 4, 9, 3, 0, 2, 8, 0, 9, 4, 6, 3, 5, 6, 5 };
         CharRepetition(NumList);
+        HW01.Library.help();
     }
     public static void CharRepetition (int [] list) 
     {
@@ -44,6 +47,9 @@ public class lesson1 {
         {
             System.out.printf("элемент %d появляется %d раз \n",UNumbersList[i],repetition[i]);
         }
+
+
+        System.out.println(Arrays.toString(repetition));
     }
     
 }
