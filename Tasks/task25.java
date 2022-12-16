@@ -1,6 +1,4 @@
-import HW01.Library;
-
-
+package Tasks;
 
 public class task25 {
     

@@ -1,6 +1,5 @@
-package Lecture1;
+package lectures;
 
-import java.util.Random;
 
 /**
  * program

@@ -1,16 +1,47 @@
-package Lecture1;
+import java.util.ArrayList;
+
+package lectures;
 
 public class l1 {
 
      public static void main(String[] args) {
         
-        int k = 2; 
         
-
 
 
      }
 
+   public static String subtractSum (int n) {
+       
+   String num = n.String ;
+   int sum =
+    
+   Array <String> [] fruits = new String [100];
+        fruits[0] = "kiwi";
+        fruits[1] = "pear";
+        fruits[2] = "kiwi";
+        fruits[3] = "banana"
+        fruits[4] = "melon"
+          
+        
+        String fruit = ""; 
+        if (num < 100)
+        {
+          fruit = fruits[num];
+          
+        }
+        
+        return fruit;
+        
+        
+        
+      }
+      
+    
+        
+        
+      }
+    }
     
 }
 

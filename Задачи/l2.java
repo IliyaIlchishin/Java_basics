@@ -1,6 +1,26 @@
 package Задачи;
 
 public class l2 {
+    public static void main(String[] args) {
+        int a = 9;
+        int b = 33;
+
+        int k1 = 1;
+        int k2 = 2;
+
+        while (a < b)
+        {
+            if (b%k2 == 1)
+            {
+                a = a +k1;
+            }
+            if (b%k2 == 0 & a * k2 < b)
+            {
+                a = a * k2;
+            }
+        }
+
+    }
     
 }
 

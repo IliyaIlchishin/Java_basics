@@ -1,6 +1,4 @@
-/**
- * task23
- */
+package Tasks;
 
 
 public class task23 {
@@ -17,7 +15,7 @@ public class task23 {
 
     static void NumQube (int [] list) 
     {
-        int [][] qubes = new int[list.length][list.length];
+        //int [][] qubes = new int[list.length][list.length];
 
         for (int i = 0; i < list.length; i++ )
         {

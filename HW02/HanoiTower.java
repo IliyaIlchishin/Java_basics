@@ -1,6 +1,6 @@
 package HW02;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 //Версия 1
 public class HanoiTower 
