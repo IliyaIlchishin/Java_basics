@@ -1,4 +1,4 @@
-package Tasks;
+package Tasks.Kata;
 
 public class hotdog {
     public static void main(String[] args) {

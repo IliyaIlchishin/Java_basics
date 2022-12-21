@@ -1,4 +1,4 @@
-package Tasks;
+package Tasks.Kata;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class next
 
         names.add("Peter");
         names.add("Harry");
-        names.add("Sucker Punch");
+        names.add("Mr. Hue");
         names.add("Lucy Lu");
         names.add("Jey Lo");
         age.add(12);

@@ -1,0 +1,175 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch test",
+            "request": "launch",
+            "mainClass": "HW04.test",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch Library",
+            "request": "launch",
+            "mainClass": "HW01.Library",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch lesson1",
+            "request": "launch",
+            "mainClass": "HW01.lesson1",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch HanoiTower",
+            "request": "launch",
+            "mainClass": "HW02.HanoiTower",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch HanoiTower2",
+            "request": "launch",
+            "mainClass": "HW02.HanoiTower2",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch HeapSort",
+            "request": "launch",
+            "mainClass": "HW03.HeapSort",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch combinations",
+            "request": "launch",
+            "mainClass": "HW04.combinations",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch Zombie",
+            "request": "launch",
+            "mainClass": "Tasks.Kata.Zombie",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch hotdog",
+            "request": "launch",
+            "mainClass": "Tasks.Kata.hotdog",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch minoutofArray",
+            "request": "launch",
+            "mainClass": "Tasks.Kata.minoutofArray",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch monthToQuarter",
+            "request": "launch",
+            "mainClass": "Tasks.Kata.monthToQuarter",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch multipleto3",
+            "request": "launch",
+            "mainClass": "Tasks.Kata.multipleto3",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch newstring",
+            "request": "launch",
+            "mainClass": "Tasks.Kata.newstring",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch next",
+            "request": "launch",
+            "mainClass": "Tasks.Kata.next",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch task23",
+            "request": "launch",
+            "mainClass": "Tasks.task23",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch task25",
+            "request": "launch",
+            "mainClass": "Tasks.task25",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch task42",
+            "request": "launch",
+            "mainClass": "Tasks.task42",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch j2",
+            "request": "launch",
+            "mainClass": "lectures.j2",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch j3",
+            "request": "launch",
+            "mainClass": "lectures.j3",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch l1",
+            "request": "launch",
+            "mainClass": "lectures.l1",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch program",
+            "request": "launch",
+            "mainClass": "lectures.program",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch l2",
+            "request": "launch",
+            "mainClass": "Задачи.l2",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch test",
+            "request": "launch",
+            "mainClass": "Задачи.test",
+            "projectName": "JAVA_b35d1b1b"
+        }
+    ]
+}

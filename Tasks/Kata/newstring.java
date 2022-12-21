@@ -1,4 +1,4 @@
-package Tasks;
+package Tasks.Kata;
 
 public class newstring {
     public static void main(String[] args) {
