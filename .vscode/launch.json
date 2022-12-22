@@ -6,6 +6,55 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "Wave.src.Main",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch Wave",
+            "request": "launch",
+            "mainClass": "HW05.Wave",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch mainfile",
+            "request": "launch",
+            "mainClass": "HW05.mainfile",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch coor",
+            "request": "launch",
+            "mainClass": "HW05.coor",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch StartEndCoodinates",
+            "request": "launch",
+            "mainClass": "HW05.StartEndCoodinates",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch WaveAlgorythm",
+            "request": "launch",
+            "mainClass": "HW05.WaveAlgorythm",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
+            "name": "Launch j4",
+            "request": "launch",
+            "mainClass": "lectures.j4",
+            "projectName": "JAVA_b35d1b1b"
+        },
+        {
+            "type": "java",
             "name": "Launch test",
             "request": "launch",
             "mainClass": "HW04.test",

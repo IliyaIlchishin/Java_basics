@@ -6,7 +6,7 @@ public class combinations {
     public static void main(String[] args) {
 
         System.out.println(F(2, 120));
-        System.out.println(Combination(2, 120));
+        System.out.println(CombinationMaps(2, 25000));
         
     }
 
@@ -21,7 +21,7 @@ public class combinations {
           return F(a, b - 1) + F(a, b / 2);
       }
 
-    static int Combination(int a, int b)
+    static int CombinationMaps(int a, int b)
 
       {
           Map<Integer, Integer> LstCombo = new HashMap<>();
@@ -41,7 +41,6 @@ public class combinations {
           return LstCombo.get(b);
       }
            
-     
 }
 
  
