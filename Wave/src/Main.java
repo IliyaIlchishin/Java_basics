@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,17 +8,22 @@ public class Main {
         int Y = size.Y;
 
         // координаты начальной и конечной точек
-        int [] StartEndCord = coordinates(X,Y);
+        int[] StartEndCord = InitialCoordinates(X, Y);
 
-        String [][] Map = CreateArray(X,Y,StartEndCord);
-        printGameField(Map);
+        int[][] AreaMap = CreateArray(X, Y, StartEndCord);
+        printGameField(AreaMap);
+        AreaMap = Wave(StartEndCord, AreaMap);
+        System.out.print("\n");
+        System.out.print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+        System.out.print("\n");
+        printGameField(AreaMap);System.out.print("\n");
 
-        }
+    }
 
     // Задаем размер поля
     static public MapSize FieldSize() {
         Scanner myScan = new Scanner(System.in);
-        System.out.printf("Пожалуйста размер игрового поля X на Y  \n");
+        System.out.printf("Введите размер игрового поля X на Y  \n");
         System.out.printf("X : ");
         int X = myScan.nextInt();
         System.out.printf("Y : ");
@@ -29,7 +34,7 @@ public class Main {
     }
 
     //Задаем координаты
-    static int[] coordinates(int X, int Y) {
+    static int[] InitialCoordinates(int X, int Y) {
         Scanner myScan = new Scanner(System.in);
 
         // начальные координаты
@@ -40,10 +45,10 @@ public class Main {
         String[] start = StartInput.split(" ");
 
         // задаем конечные координаты
-         System.out.printf("Пожалуйста введите координаты конечной точки через пробел. \n");
-         System.out.printf("координата Y от 1 и не больше %d ", Y - 2);
-         String EndInput = myScan.nextLine();
-         String[] end = EndInput.split(" ");
+        System.out.printf("Пожалуйста введите координаты конечной точки через пробел. \n");
+        System.out.printf("координата Y от 1 и не больше %d ", Y - 2);
+        String EndInput = myScan.nextLine();
+        String[] end = EndInput.split(" ");
 
         // myScan.close();
 
@@ -56,44 +61,143 @@ public class Main {
         return StartEndCoordinates;
     }
 
-    static public String[][] CreateArray(int X, int Y, int[] StartEndCoordinates) {
+    static public int[][] CreateArray(int X, int Y, int[] StartEndCoordinates) {
 
-        String[][] GameField = new String[X][Y];
+        int[][] GameField = new int[X][Y];
         for (int i = 0; i < X; i++) {
             for (int j = 0; j < Y; j++) {
-                GameField[i][j] = "0";
+                GameField[i][j] = 0;
             }
         }
-        GameField[StartEndCoordinates[0]][StartEndCoordinates[1]] = "X";
-        GameField[StartEndCoordinates[2]][StartEndCoordinates[3]] = "Y";
+        GameField[StartEndCoordinates[0]][StartEndCoordinates[1]] = 1;
+        GameField[StartEndCoordinates[2]][StartEndCoordinates[3]] = -9;
 
         // Рисуем барьер на поле
         for (int i = 0; i < GameField.length; i++) {
-            GameField[0][i] = "S";
+            GameField[0][i] = -2;
         }
         for (int i = 0; i < GameField.length; i++) {
-            GameField[i][0] = "S";
+            GameField[i][0] = -2;
         }
         for (int i = 0; i < GameField.length; i++) {
-            GameField[GameField.length - 1][i] = "S";
+            GameField[GameField.length - 1][i] = -2;
         }
         for (int i = 0; i < GameField.length; i++) {
-            GameField[i][GameField.length - 1] = "S";
+            GameField[i][GameField.length - 1] = -2;
         }
 
         return GameField;
 
     }
 
+
     // Печатаем игровое поле
-    static public void printGameField(String[][] GameField) {
+    static public void printGameField(int[][] GameField) {
 
         for (int i = 0; i < GameField.length; i++) {
             for (int j = 0; j < GameField[0].length; j++) {
                 System.out.print(GameField[i][j] + " ");
             }
             System.out.println();
+
         }
     }
 
+
+    static public int[][] Wave(int[] StartEndCord, int[][] AreaMap) {
+
+        Deque<Position> CoordQueue = new LinkedList<Position>();
+        Position pos
+        CoordQueue =
+
+        queue.add(startPoint);
+        map[startPoint.x][startPoint.y] = 1;
+
+        while (queue.size() != 0) {
+            Point2D p = queue.remove();
+
+            if (map[p.x - 1][p.y] == 0) {
+                queue.add(new Point2D(p.x - 1, p.y));
+                map[p.x - 1][p.y] = map[p.x][p.y] + 1;
+            }
+            if (map[p.x][p.y - 1] == 0) {
+                queue.add(new Point2D(p.x, p.y - 1));
+                map[p.x][p.y - 1] = map[p.x][p.y] + 1;
+            }
+            if (map[p.x + 1][p.y] == 0) {
+                queue.add(new Point2D(p.x + 1, p.y));
+                map[p.x + 1][p.y] = map[p.x][p.y] + 1;
+            }
+            if (map[p.x][p.y + 1] == 0) {
+                queue.add(new Point2D(p.x, p.y + 1));
+                map[p.x][p.y + 1] = map[p.x][p.y] + 1;
+
+
+
+/*
+        while (AreaMap[StartEndCord[2]][StartEndCord[3]] == -9 )
+
+        {
+            if (AreaMap[CoordQueue.getFirst()][CoordQueue.getFirst()] == 0)
+            {
+                AreaMap[CoordQueue.getFirst()][CoordQueue.getFirst()]= AreaMap[CoordQueue.getFirst()][CoordQueue.getFirst()]+1;
+
+            }
+        }
+        */
+
+/*
+        int height = AreaMap.length - 2;
+        int width = AreaMap[0].length - 2;
+
+        // координата начальной точки, чтобы второй волне не выходили за пределы массива
+        int w = StartEndCord[0];
+        System.out.printf("координат w - %d", w);
+        int h = StartEndCord[1];
+        System.out.printf("координат h - %d", h);
+
+        do {
+            System.out.println("Test 1 ");
+            // поиск вправо и вниз от начальной точки
+            for (int i = StartEndCord[0]; i < width; i++) {
+                for (int j = StartEndCord[1]; j < height; j++) {
+
+                    if (AreaMap[i + 1][j] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i + 1][j] = AreaMap[i][j] + 1;
+                    if (AreaMap[i][j + 1] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i][j + 1] = AreaMap[i][j] + 1;
+                    if (AreaMap[i - 1][j] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i - 1][j] = AreaMap[i][j] + 1;
+                    if (AreaMap[i][j - 1] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i][j - 1] = AreaMap[i][j] + 1;
+                }
+            }
+            // поиск влево и вверх от начальной точки
+            for (int i = StartEndCord[0]; i < width-w; i--) {
+                for (int j = StartEndCord[1]; j < height-h; j--) {
+
+                    if (AreaMap[i + 1][j] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i + 1][j] = AreaMap[i][j] + 1;
+                    if (AreaMap[i][j + 1] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i][j + 1] = AreaMap[i][j] + 1;
+                    if (AreaMap[i - 1][j] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i - 1][j] = AreaMap[i][j] + 1;
+                    if (AreaMap[i][j - 1] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i][j - 1] = AreaMap[i][j] + 1;
+                }count++;
+            }
+        }
+        while (AreaMap[StartEndCord[2]][StartEndCord[3]] == -9 ) ;//&& count < 50
+        AreaMap[StartEndCord[2]][StartEndCord[3]] = -9;*/
+        return AreaMap;
+    }
 }
+/*
+                    // пока конечная точка не изменена
+                    if (AreaMap[StartEndCord[2]][StartEndCord[3]] != -9) {
+                        finished = true;
+                        System.out.print("Мы достигли цели");
+
+                         for (int i = StartEndCord[0]; i < width; i++) {
+                for (int j = StartEndCord[1]; j < height; j++) {
+
+                    if (AreaMap[i + 1][j] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i + 1][j] = AreaMap[i][j] + 1;
+                    if (AreaMap[i][j + 1] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i][j + 1] = AreaMap[i][j] + 1;
+                    if (AreaMap[i - 1][j] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i - 1][j] = AreaMap[i][j] + 1;
+                    if (AreaMap[i][j - 1] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i][j - 1] = AreaMap[i][j] + 1;
+                }
+            }
+
+*/
