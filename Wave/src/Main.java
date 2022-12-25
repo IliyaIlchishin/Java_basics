@@ -137,6 +137,7 @@ public class Main {
 
             if (AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] == 0){
                 AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]+1;
+               
             }
 
             if (AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2+1] == 0){
@@ -149,6 +150,8 @@ public class Main {
                 System.out.println("test 4 ");
                 AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]+1;
             }
+            CoordQueue.removeFirst();
+
             count++;
         }
 
