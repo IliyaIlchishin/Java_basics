@@ -114,18 +114,13 @@ public class Main {
     static public int[][] Wave(int[] StartEndCord, int[][] AreaMap) {
 
         Deque<Position> CoordQueue = new ArrayDeque<Position>();
-        Position loc = new Position();
-        loc.pos1 = StartEndCord[0];
-        loc.pos2 = StartEndCord[1];
+        Position loc = new Position(StartEndCord[0],StartEndCord[1]);
         CoordQueue.add(loc);
-        System.out.print("CoordQueue.getFirst().pos1 - ");
-        System.out.print(CoordQueue.getFirst().pos1);
-        System.out.print("\n");
-        System.out.print("CoordQueue.getFirst().pos2 - ");
-        System.out.print(CoordQueue.getFirst().pos2);
+
+        //тут все ок, можно извлекать значения по одному  CoordQueue.getFirst().pos1
 
         System.out.print("\n");
-        System.out.print("AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2 - \n]");
+        System.out.print("AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2] - ");
         System.out.print(AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]);
         int count = 0;
         System.out.print("\n");
@@ -137,20 +132,19 @@ public class Main {
 
             if (AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] == 0){
                 AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]+1;
-               
+
             }
 
             if (AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2+1] == 0){
-                AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]+1;
+                AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2+1] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]+1;
             }
             if (AreaMap[CoordQueue.getFirst().pos1+1][CoordQueue.getFirst().pos2] == 0){
-                AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]+1;
+                AreaMap[CoordQueue.getFirst().pos1+1][CoordQueue.getFirst().pos2] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]+1;
             }
             if (AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2-1] == 0) {
-                System.out.println("test 4 ");
-                AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]+1;
+                AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2-1] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]+1;
             }
-            CoordQueue.removeFirst();
+            //CoordQueue.removeFirst();
 
             count++;
         }
