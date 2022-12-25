@@ -1,5 +1,10 @@
 public class Position {
+   //int pos1, pos2;
 
+
+    int pos1;
+    int pos2;
+/*
     public int Pos1;
     public int Pos2;
 
@@ -13,7 +18,5 @@ public class Position {
 
     public int getPos2() {
         return Pos2;
-    }
-    }
-
+    }*/
 }

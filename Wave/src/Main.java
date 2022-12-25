@@ -103,48 +103,55 @@ public class Main {
         }
     }
 
+//    static public Position CurrentPos(int[] StartEndCord) {
+//        int Pos1 = StartEndCord[0];
+//        int Pos2 = StartEndCord[1];
+//
+//        return new Position(Pos1, Pos2);
+//    }
+
 
     static public int[][] Wave(int[] StartEndCord, int[][] AreaMap) {
 
-        Deque<Position> CoordQueue = new LinkedList<Position>();
-        Position pos
-        CoordQueue =
+        Deque<Position> CoordQueue = new ArrayDeque<Position>();
+        Position loc = new Position();
+        loc.pos1 = StartEndCord[0];
+        loc.pos2 = StartEndCord[1];
+        CoordQueue.add(loc);
+        System.out.print("CoordQueue.getFirst().pos1 - ");
+        System.out.print(CoordQueue.getFirst().pos1);
+        System.out.print("\n");
+        System.out.print("CoordQueue.getFirst().pos2 - ");
+        System.out.print(CoordQueue.getFirst().pos2);
 
-        queue.add(startPoint);
-        map[startPoint.x][startPoint.y] = 1;
-
-        while (queue.size() != 0) {
-            Point2D p = queue.remove();
-
-            if (map[p.x - 1][p.y] == 0) {
-                queue.add(new Point2D(p.x - 1, p.y));
-                map[p.x - 1][p.y] = map[p.x][p.y] + 1;
-            }
-            if (map[p.x][p.y - 1] == 0) {
-                queue.add(new Point2D(p.x, p.y - 1));
-                map[p.x][p.y - 1] = map[p.x][p.y] + 1;
-            }
-            if (map[p.x + 1][p.y] == 0) {
-                queue.add(new Point2D(p.x + 1, p.y));
-                map[p.x + 1][p.y] = map[p.x][p.y] + 1;
-            }
-            if (map[p.x][p.y + 1] == 0) {
-                queue.add(new Point2D(p.x, p.y + 1));
-                map[p.x][p.y + 1] = map[p.x][p.y] + 1;
+        System.out.print("\n");
+        System.out.print("AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2 - \n]");
+        System.out.print(AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]);
+        int count = 0;
+        System.out.print("\n");
 
 
-
-/*
-        while (AreaMap[StartEndCord[2]][StartEndCord[3]] == -9 )
+       while (AreaMap[StartEndCord[2]][StartEndCord[3]] == -9 && count<3)
 
         {
-            if (AreaMap[CoordQueue.getFirst()][CoordQueue.getFirst()] == 0)
-            {
-                AreaMap[CoordQueue.getFirst()][CoordQueue.getFirst()]= AreaMap[CoordQueue.getFirst()][CoordQueue.getFirst()]+1;
 
+            if (AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] == 0){
+                AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]+1;
             }
+
+            if (AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2+1] == 0){
+                AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]+1;
+            }
+            if (AreaMap[CoordQueue.getFirst().pos1+1][CoordQueue.getFirst().pos2] == 0){
+                AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]+1;
+            }
+            if (AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2-1] == 0) {
+                System.out.println("test 4 ");
+                AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]+1;
+            }
+            count++;
         }
-        */
+
 
 /*
         int height = AreaMap.length - 2;
