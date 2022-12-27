@@ -29,9 +29,6 @@ public class test {
         System.out.printf("x - %d\ny - %d\n",x , y);
     }
 
-
-
-
 }
 
 /* 

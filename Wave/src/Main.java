@@ -1,3 +1,4 @@
+import java.awt.geom.Area;
 import java.util.*;
 
 public class Main {
@@ -16,8 +17,12 @@ public class Main {
         System.out.print("\n");
         System.out.print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
         System.out.print("\n");
-        printGameField(AreaMap);System.out.print("\n");
-
+        printGameField(AreaMap);
+        System.out.print("\n");
+        System.out.print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+        AreaMap = BackRoute(StartEndCord, AreaMap);
+        System.out.print("\n");
+        printGameField(AreaMap);
     }
 
     // Задаем размер поля
@@ -28,7 +33,6 @@ public class Main {
         int X = myScan.nextInt();
         System.out.printf("Y : ");
         int Y = myScan.nextInt();
-
 
         return new MapSize(X, Y);
     }
@@ -103,105 +107,121 @@ public class Main {
         }
     }
 
-//    static public Position CurrentPos(int[] StartEndCord) {
-//        int Pos1 = StartEndCord[0];
-//        int Pos2 = StartEndCord[1];
-//
-//        return new Position(Pos1, Pos2);
-//    }
+    public static int[][] CopyArray (int[][] AreaMap) {
+        if (AreaMap == null) {
+            return null;
+        }
 
+        int[][] copy = new int[AreaMap.length][];
+
+        for (int i = 0; i < AreaMap.length; i++) {
+            copy[i] = new int[AreaMap[i].length];
+            System.arraycopy(AreaMap[i], 0, copy[i], 0, AreaMap[i].length);
+        }
+
+        return copy;
+    }
 
     static public int[][] Wave(int[] StartEndCord, int[][] AreaMap) {
 
+
         Deque<Position> CoordQueue = new ArrayDeque<Position>();
-        Position loc = new Position(StartEndCord[0],StartEndCord[1]);
+        Position loc = new Position(StartEndCord[0], StartEndCord[1]);
         CoordQueue.add(loc);
 
-        //тут все ок, можно извлекать значения по одному  CoordQueue.getFirst().pos1
 
-        System.out.print("\n");
-        System.out.print("AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2] - ");
-        System.out.print(AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]);
-        int count = 0;
-        System.out.print("\n");
+        while (AreaMap[StartEndCord[2]][StartEndCord[3]] == -9) {
+
+            if (AreaMap[CoordQueue.getFirst().pos1 - 1][CoordQueue.getFirst().pos2] == 0 || AreaMap[CoordQueue.getFirst().pos1 - 1][CoordQueue.getFirst().pos2] == -9) {
+                AreaMap[CoordQueue.getFirst().pos1 - 1][CoordQueue.getFirst().pos2] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2] + 1;
+                Position loc1 = new Position(CoordQueue.getFirst().pos1 - 1, CoordQueue.getFirst().pos2);
+                CoordQueue.add(loc1);
+            }
+
+            if (AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2 + 1] == 0 || AreaMap[CoordQueue.getFirst().pos1 - 1][CoordQueue.getFirst().pos2] == -9) {
+                AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2 + 1] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2] + 1;
+                Position loc2 = new Position(CoordQueue.getFirst().pos1, CoordQueue.getFirst().pos2 + 1);
+                CoordQueue.add(loc2);
+            }
+            if (AreaMap[CoordQueue.getFirst().pos1 + 1][CoordQueue.getFirst().pos2] == 0 || AreaMap[CoordQueue.getFirst().pos1 - 1][CoordQueue.getFirst().pos2] == -9) {
+                AreaMap[CoordQueue.getFirst().pos1 + 1][CoordQueue.getFirst().pos2] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2] + 1;
+                Position loc3 = new Position(CoordQueue.getFirst().pos1 + 1, CoordQueue.getFirst().pos2);
+                CoordQueue.add(loc3);
+            }
+            if (AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2 - 1] == 0 || AreaMap[CoordQueue.getFirst().pos1 - 1][CoordQueue.getFirst().pos2] == -9) {
+                AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2 - 1] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2] + 1;
+                Position loc4 = new Position(CoordQueue.getFirst().pos1, CoordQueue.getFirst().pos2 - 1);
+                CoordQueue.add(loc4);
+            }
+
+            CoordQueue.pollFirst();
+
+        }
+
+        System.out.print("Конечная точка найдена");
+        int min = AreaMap[StartEndCord[2]-1][StartEndCord[3]];
+        if ( min > AreaMap[StartEndCord[2]][StartEndCord[3]+1] ) min = AreaMap[StartEndCord[2]-1][StartEndCord[3]];
+        if ( min > AreaMap[StartEndCord[2]+1][StartEndCord[3]] ) min = AreaMap[StartEndCord[2]-1][StartEndCord[3]];
+        if ( min > AreaMap[StartEndCord[2]][StartEndCord[3]-1] ) min = AreaMap[StartEndCord[2]-1][StartEndCord[3]];
+        // помечаем конечную точку последним наименьшим шагом +1, чтобы далее от этой точке в поиске пути строить маршрут обратно
+        AreaMap[StartEndCord[2]][StartEndCord[3]] = min+1;
+
+        return AreaMap;
+
+    }
+
+    static public int [][] BackRoute (int[] StartEndCord,int[][] AreaMap)
+    {
+        //копия карты на которой будем отмечать маршрут от конечной координаты до начальной, что
+        int[][] MapWithRoute = CopyArray(AreaMap);
 
 
-       while (AreaMap[StartEndCord[2]][StartEndCord[3]] == -9 && count<3)
+        Deque<Position> CoordQueue = new ArrayDeque<Position>();
+        Position loc = new Position(StartEndCord[2], StartEndCord[3]);
+        CoordQueue.add(loc);
+
+
+            // AreaMap
+        while (MapWithRoute [StartEndCord[0]][StartEndCord[1]] == 1 )
 
         {
 
-            if (AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] == 0){
-                AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]+1;
+            if (AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] < AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]  &&
+                    AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] > 0) {
+                MapWithRoute [CoordQueue.getFirst().pos1 - 1][CoordQueue.getFirst().pos2] = 0;
+                Position loc1 = new Position(CoordQueue.getFirst().pos1 - 1, CoordQueue.getFirst().pos2);
+                CoordQueue.add(loc1);
 
             }
+            else if (AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2+1] < AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2] &&
+                    AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2+1] > 0) {
+                MapWithRoute [CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2+1] = 0;
+                Position loc1 = new Position(CoordQueue.getFirst().pos1, CoordQueue.getFirst().pos2+1);
+                CoordQueue.add(loc1);
+            }
+            else if (AreaMap[CoordQueue.getFirst().pos1+1][CoordQueue.getFirst().pos2] == AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]&&
+                    AreaMap[CoordQueue.getFirst().pos1+1][CoordQueue.getFirst().pos2] > 0) {
+                MapWithRoute [CoordQueue.getFirst().pos1+1][CoordQueue.getFirst().pos2] = 0;
+                Position loc1 = new Position(CoordQueue.getFirst().pos1+1, CoordQueue.getFirst().pos2);
+                CoordQueue.add(loc1);
+            }
 
-            if (AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2+1] == 0){
-                AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2+1] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]+1;
+            else if (AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2-1] < AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2] &&
+            AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2-1] > 0) {
+                MapWithRoute [CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2-1] = 0;
+                Position loc1 = new Position(CoordQueue.getFirst().pos1, CoordQueue.getFirst().pos2-1);
+                CoordQueue.add(loc1);
             }
-            if (AreaMap[CoordQueue.getFirst().pos1+1][CoordQueue.getFirst().pos2] == 0){
-                AreaMap[CoordQueue.getFirst().pos1+1][CoordQueue.getFirst().pos2] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]+1;
-            }
-            if (AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2-1] == 0) {
-                AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2-1] = AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]+1;
-            }
-            //CoordQueue.removeFirst();
-
-            count++;
+            CoordQueue.pollFirst();
         }
 
 
-/*
-        int height = AreaMap.length - 2;
-        int width = AreaMap[0].length - 2;
-
-        // координата начальной точки, чтобы второй волне не выходили за пределы массива
-        int w = StartEndCord[0];
-        System.out.printf("координат w - %d", w);
-        int h = StartEndCord[1];
-        System.out.printf("координат h - %d", h);
-
-        do {
-            System.out.println("Test 1 ");
-            // поиск вправо и вниз от начальной точки
-            for (int i = StartEndCord[0]; i < width; i++) {
-                for (int j = StartEndCord[1]; j < height; j++) {
-
-                    if (AreaMap[i + 1][j] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i + 1][j] = AreaMap[i][j] + 1;
-                    if (AreaMap[i][j + 1] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i][j + 1] = AreaMap[i][j] + 1;
-                    if (AreaMap[i - 1][j] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i - 1][j] = AreaMap[i][j] + 1;
-                    if (AreaMap[i][j - 1] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i][j - 1] = AreaMap[i][j] + 1;
-                }
-            }
-            // поиск влево и вверх от начальной точки
-            for (int i = StartEndCord[0]; i < width-w; i--) {
-                for (int j = StartEndCord[1]; j < height-h; j--) {
-
-                    if (AreaMap[i + 1][j] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i + 1][j] = AreaMap[i][j] + 1;
-                    if (AreaMap[i][j + 1] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i][j + 1] = AreaMap[i][j] + 1;
-                    if (AreaMap[i - 1][j] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i - 1][j] = AreaMap[i][j] + 1;
-                    if (AreaMap[i][j - 1] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i][j - 1] = AreaMap[i][j] + 1;
-                }count++;
-            }
-        }
-        while (AreaMap[StartEndCord[2]][StartEndCord[3]] == -9 ) ;//&& count < 50
-        AreaMap[StartEndCord[2]][StartEndCord[3]] = -9;*/
-        return AreaMap;
+        System.out.print("Маршрут построен");
+        AreaMap[StartEndCord[0]][StartEndCord[1]] = 1;
+        return MapWithRoute;
     }
+
+
 }
-/*
-                    // пока конечная точка не изменена
-                    if (AreaMap[StartEndCord[2]][StartEndCord[3]] != -9) {
-                        finished = true;
-                        System.out.print("Мы достигли цели");
 
-                         for (int i = StartEndCord[0]; i < width; i++) {
-                for (int j = StartEndCord[1]; j < height; j++) {
 
-                    if (AreaMap[i + 1][j] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i + 1][j] = AreaMap[i][j] + 1;
-                    if (AreaMap[i][j + 1] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i][j + 1] = AreaMap[i][j] + 1;
-                    if (AreaMap[i - 1][j] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i - 1][j] = AreaMap[i][j] + 1;
-                    if (AreaMap[i][j - 1] == 0 || AreaMap[i + 1][j] == -9) AreaMap[i][j - 1] = AreaMap[i][j] + 1;
-                }
-            }
-
-*/
