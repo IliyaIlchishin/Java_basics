@@ -188,6 +188,7 @@ public class Main {
 
             if (AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] < AreaMap[CoordQueue.getFirst().pos1][CoordQueue.getFirst().pos2]  &&
                     AreaMap[CoordQueue.getFirst().pos1-1][CoordQueue.getFirst().pos2] > 0) {
+                // подсовываем копию массива с координатами и обратный маршрут помечаем ноликами
                 MapWithRoute [CoordQueue.getFirst().pos1 - 1][CoordQueue.getFirst().pos2] = 0;
                 Position loc1 = new Position(CoordQueue.getFirst().pos1 - 1, CoordQueue.getFirst().pos2);
                 CoordQueue.add(loc1);
