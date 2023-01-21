@@ -7,10 +7,11 @@ public class Human {
 
 
     protected String name;
-    protected int id = 0;
+    protected static int id = 0;
 
     Human(){
         name = SetName();
+        id ++;
     }
 
     public String GetName()

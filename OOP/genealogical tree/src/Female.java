@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -11,6 +12,8 @@ public class Female extends Human {
 
     protected boolean AnyBrotherSister = false;
     protected boolean AnyChildren = false;
+    protected ArrayList<String> BrothersSisters = new ArrayList<>();
+    protected ArrayList<String> Children = new ArrayList<>();
 
 
     Female(int age, String FName, String MName) {
@@ -73,8 +76,6 @@ public class Female extends Human {
 
     }
 
-    Map<String, String> BrothersSisters = new HashMap<>();
-    Map<String, String> Children = new HashMap<>();
 
 
     public String ShowInfo(){
