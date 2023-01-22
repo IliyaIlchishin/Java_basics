@@ -3,11 +3,14 @@ import java.util.Random;
 import java.util.Scanner;
 
 
-public class Human {
+public abstract class Human {
 
 
     protected String name;
     protected static int id = 0;
+
+    protected int age;
+
 
     Human(){
         name = SetName();
