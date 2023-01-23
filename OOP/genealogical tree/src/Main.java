@@ -19,22 +19,18 @@ public class Main {
         System.out.print(Baby2.ShowInfo());
         System.out.print("---------------------------------------------------\n");
 
+        Baby2.MakeFriendsWith();
+
         //Обновленная инфа по отцу и матери
         System.out.print(Peter.ShowInfo());
         System.out.print("---------------------------------------------------\n");
         System.out.print(Galina.ShowInfo());
         System.out.print("---------------------------------------------------\n");
 
+        //
 
 
-        //данные о детях Peter
-        System.out.print("---------------------------------------------------\n");
-        Peter.ShowChildren(Peter);
 
-        //данные о братьях сестрах
-        System.out.print("---------------------------------------------------\n");
-        String Brothers =  Baby2.ShowBrothersSisters(Baby2);
-        System.out.print(Baby2.ShowBrothersSisters(Baby2));
 
 
     }

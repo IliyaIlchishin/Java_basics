@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Female extends Male {
+public class Female extends Human {
 
     protected String gender = "Женщина";
 
@@ -73,24 +73,7 @@ public class Female extends Male {
         return newChild;
     }
 
-    @Override
-    public String ShowChildren(Human a) {
 
-        System.out.printf("Ниже список детей %s\n", a.name);
-
-        String AllChildren = this.Children.toString();
-        if (AnyChildren = true) {
-            System.out.print("" + AllChildren);
-
-        } else {
-            System.out.print("детей нет");
-
-        }
-        {
-            return String.format ("Имя - %s, ID - %d\n", name,id);
-        }
-
-    }
 }
 
 

@@ -1,32 +1,57 @@
 import java.util.Random;
 
-public class Male extends Human {
+public class Male extends Human implements Child, Parent{
 
     protected String gender = "Мужчина";
+    String Status = "Ребенок";
 
 
     Male(String name, int age, String FName, String MName) {
         super(name, age, FName, MName);
+        if (age > 11 & age < 16){Status = "Подросток";}
+        if (age > 16 & age < 25){Status = "Молодой человек";}
+        if (age > 25 & age < 60){Status = "Взрослый";}
+        if (age > 60 & age < 100){Status = "Пожилой";}
     }
 
     @Override
     public String ShowInfo() {
+
+        //Братья и сестры
         String Siblings = "";
+        String SiblingsList = this.BrothersSisters.toString();
+
         if (AnyBrotherSister == false) {
             Siblings = "Братьев и сестер нет\n";
         } else {
-            Siblings = "Брат или сестра\n";
+            Siblings = "Список братьев и сестер:";
+            Siblings = Siblings + SiblingsList;
         }
+
+        // Дети
+        String AllChildren = this.Children.toString();
         String Child = "";
+
         if (AnyChildren == false) {
             Child = "Детей нет";
         } else {
-            Child = "Есть дети";
+            Child = "Есть дети: ";
+            Child = Child + AllChildren;
         }
+
+
+        //Друзья
+
+        String AllFriends = this.Friends.toString();
+        String Friend = "Список друзей: ";
+        Friend = Friend + AllFriends;
+
         return String.format("Имя - %s, пол - %s, Возраст - %d, ID - %d  \n" +
-                "%s" +
-                "%s \n" +
-                "Отец - %s, Мать - %s\n", this.name, this.gender, this.age, this.id, Siblings, Child, this.FatherName, this.MotherName);
+                "Статус - %s\n" +
+                "%s\n" + // наличие братьев
+                "%s \n" + // дети
+                "Отец - %s, Мать - %s\n" +
+                "%s\n", this.name, this.gender, this.age, this.id,this.Status, Siblings, Child, this.FatherName, this.MotherName,Friend);
 
     }
 
@@ -79,42 +104,33 @@ public class Male extends Human {
     }
 
 
-
     @Override
-    public String ShowChildren(Human a) {
+    public void GoToSchool() {
 
-        System.out.printf("Ниже список детей %s\n", a.name);
-
-        String AllChildren = this.Children.toString();
-        if (AnyChildren = true) {
-            System.out.print("" + AllChildren);
-            System.out.print("\n");
-
-        } else {
-            System.out.print("детей нет");
-
-        }
-        {
-            return String.format ("Имя - %s, ID - %d\n", name,id);
-        }
-    }
-    @Override
-    public String ShowBrothersSisters(Human a) {
-
-            System.out.printf("Список братьев и сестер %s\n", a.name);
-
-            String BrosSis = this.BrothersSisters.toString();
-            if (AnyBrotherSister == true) {
-                System.out.print("" + BrosSis);
-
-            } else {
-                System.out.print("Сестер и братьев нет");
-
-            }
-            {
-                return String.format ("Имя - %s, ID - %d\n", name,id);
-            }
     }
 
+    @Override
+    public void playGames() {
 
+    }
+
+    @Override
+    public void MakeFriendsWith(Human a, Human b) {
+        if (a.age < b.age+5 & b.age>a.age-5 ){
+            a.Friends.add(b.name);
+            b.Friends.add(a.name);
+            System.out.printf("Теперь %s и %s друзья ", a.name, b.name);
+        }
+        else{System.out.printf("%s и %s не могут быть друзьями. разница в возрасте лишком велика ", a.name, b.name);}
+    }
+
+    @Override
+    public int Working() {
+        return 0;
+    }
+
+    @Override
+    public int GetSalary() {
+        return 0;
+    }
 }

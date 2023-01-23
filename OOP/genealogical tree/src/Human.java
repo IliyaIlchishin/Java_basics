@@ -47,7 +47,7 @@ public abstract class Human {
     protected int GetID(){
         return this.id;
     }
-
+    /** Показываем всю информацию о выбранном экземпляре класса Human */
     public abstract String ShowInfo();
 
     public int getAge(){
@@ -81,8 +81,7 @@ public abstract class Human {
         return MotherName;
     }
 
-    public abstract String ShowChildren(Human a);
-    public abstract String ShowBrothersSisters(Human a);
+
 
 }
 
