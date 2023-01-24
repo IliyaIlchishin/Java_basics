@@ -1,4 +1,4 @@
-public class School extends Building implements PublicBuildings{
+public class School extends Building {
 
     private int sizeSQM;
     private int length;
@@ -10,8 +10,10 @@ public class School extends Building implements PublicBuildings{
     int NumTeachers;
 
 
-    @Override
+
     public boolean WorkTime(int openHour, int closeHour) {
         return false;
     }
+
+
 }

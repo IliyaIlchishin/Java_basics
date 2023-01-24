@@ -22,7 +22,7 @@ public class Male extends Human implements Child, Parent{
         String SiblingsList = this.BrothersSisters.toString();
 
         if (AnyBrotherSister == false) {
-            Siblings = "Братьев и сестер нет\n";
+            Siblings = "Братьев и сестер нет";
         } else {
             Siblings = "Список братьев и сестер:";
             Siblings = Siblings + SiblingsList;
@@ -46,12 +46,15 @@ public class Male extends Human implements Child, Parent{
         String Friend = "Список друзей: ";
         Friend = Friend + AllFriends;
 
+        // Работа
+
         return String.format("Имя - %s, пол - %s, Возраст - %d, ID - %d  \n" +
                 "Статус - %s\n" +
                 "%s\n" + // наличие братьев
                 "%s \n" + // дети
                 "Отец - %s, Мать - %s\n" +
-                "%s\n", this.name, this.gender, this.age, this.id,this.Status, Siblings, Child, this.FatherName, this.MotherName,Friend);
+                "%s \n" +
+                "%s\n", this.name, this.gender, this.age, this.id,this.Status, Siblings, Child, this.FatherName, this.MotherName,this.WorkStatus,Friend);
 
     }
 
@@ -104,15 +107,8 @@ public class Male extends Human implements Child, Parent{
     }
 
 
-    @Override
-    public void GoToSchool() {
 
-    }
 
-    @Override
-    public void playGames() {
-
-    }
 
     @Override
     public void MakeFriendsWith(Human a, Human b) {

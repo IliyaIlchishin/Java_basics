@@ -1,2 +1,5 @@
-public class PrivateBuildings {
+public interface PrivateBuildings {
+
+
 }
+

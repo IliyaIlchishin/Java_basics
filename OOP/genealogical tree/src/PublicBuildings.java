@@ -1,7 +1,13 @@
-public interface PublicBuildings {
+public abstract class PublicBuildings extends  Building{
+
+    public static Object Hire;
+    protected String CompanyName = null;
+    protected int StartWorkingHour = 0;
+    protected int EndWorkingHour = 0;
+    protected int NumberOfEmployees = 0;
 
 
-    boolean WorkTime (int openHour, int closeHour);
+   protected abstract boolean WorkTime ();
 
 
 }

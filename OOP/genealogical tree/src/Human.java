@@ -13,6 +13,9 @@ public abstract class Human {
     protected int age;
     protected String FatherName = "";
     protected String MotherName = "";
+    protected int Money = 0;
+    protected String WorkStatus = "Безработный";
+    protected String WorkPosition;
 
     protected boolean AnyBrotherSister = false;
     protected boolean AnyChildren = false;
@@ -30,6 +33,7 @@ public abstract class Human {
         this.MotherName = MName;
         count ++;
         this.id = count;
+        this.Money = 0;
     }
 
     public String GetName(){
@@ -80,6 +84,7 @@ public abstract class Human {
         //myScanner.close();
         return MotherName;
     }
+
 
 
 
