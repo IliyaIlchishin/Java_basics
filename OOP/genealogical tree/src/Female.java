@@ -14,6 +14,13 @@ public class Female extends Human {
         if (age > 60 & age < 100){Status = "Пожилой";}
     }
 
+    Female() {
+        super();
+        if (age > 11 & age < 16){Status = "Подросток";}
+        if (age > 16 & age < 25){Status = "Молодой человек";}
+        if (age > 25 & age < 60){Status = "Взрослый";}
+        if (age > 60 & age < 100){Status = "Пожилой";}
+    }
 
     @Override
     public String ShowInfo() {

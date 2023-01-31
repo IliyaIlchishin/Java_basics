@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
+import java.util.Iterator;
 
-public class Male extends Human implements Child, Parent{
+public class Male extends Human implements Child, Parent, Iterator {
 
     protected String gender = "Мужчина";
     String Status = "Ребенок";
@@ -8,6 +11,14 @@ public class Male extends Human implements Child, Parent{
 
     Male(String name, int age, String FName, String MName) {
         super(name, age, FName, MName);
+        if (age > 11 & age < 16){Status = "Подросток";}
+        if (age > 16 & age < 25){Status = "Молодой человек";}
+        if (age > 25 & age < 60){Status = "Взрослый";}
+        if (age > 60 & age < 100){Status = "Пожилой";}
+    }
+
+    Male() {
+        super();
         if (age > 11 & age < 16){Status = "Подросток";}
         if (age > 16 & age < 25){Status = "Молодой человек";}
         if (age > 25 & age < 60){Status = "Взрослый";}
@@ -108,8 +119,6 @@ public class Male extends Human implements Child, Parent{
 
 
 
-
-
     @Override
     public void MakeFriendsWith(Human a, Human b) {
         if (a.age < b.age+5 & b.age>a.age-5 ){
@@ -129,4 +138,36 @@ public class Male extends Human implements Child, Parent{
     public int GetSalary() {
         return 0;
     }
+
+
+
+    int index;
+
+    @Override
+    public boolean hasNext() {
+        return index++ < 7;
+    }
+
+    @Override
+    public String next() {
+        switch (index) {
+            case 1:
+                //return firstName;
+                return String.format("Name: %s", name);
+            case 2:
+                return String.format("gender: %d", gender);
+            case 3:
+                return String.format("Status: %d", Status);
+            case 4:
+                return String.format("Father name: %s", FatherName);
+            case 5:
+                return String.format("Mother name: %d", MotherName);
+            case 6:
+                return String.format("age: %d", age);
+            default:
+                return String.format("Работа: %d", WorkStatus);
+
+        }
+    }
+
 }
